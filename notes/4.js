@@ -108,3 +108,43 @@ User.findOne({ googleId: profile.id })
 // 1 and error. 2. a record.
 // nice, .save() by default returns the new record on completion
 // we can just use .save().then()
+
+// by default express doesn't know how to handle cookies
+npm install --save cookie-session
+// library that DOES know how to handle cookies
+
+app.get('/api/current_user',
+(req, res) => {
+    res.send(req.user);
+});
+// okay, this works because of passport voodoo
+// passport automatically attaches the NOPE WRONG req (request) to 
+// passport automatically attaches the user property to the request object
+
+// ooh, it's a get request. duh. app.get
+// so the request is everything that goes into the request object. of course it would be available by default
+
+// express cookieSession stuff?
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        keys: [keys.cookieKey]
+    })
+);
+// request comes in
+// extracts cookie data
+// pulls user id from cookie data
+// our function turns user id into a user
+// user model instance added to req object as req.user
+
+// cookie-session vs express-session
+// cookie-session
+    // stores the data itself in the session
+    // we assign data to cookie, cookie-session middleware takes data from cookie and assigns it to the req.session property
+
+// express-session
+    // stores a REFERENCe to a session, which is an id key to session data located in a database or something
+    // more secure, maybe?
+    // ah, it's a size limit thing.
+
+// cookies
