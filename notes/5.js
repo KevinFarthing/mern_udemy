@@ -9,7 +9,7 @@
 (process.env.NODE_ENV ==='production')
 // NODE_ENV is automatically set to production on heroku, because it's nice like that
 
-// ISSUE
+// ISSUE (nope, not an issue)
 // Cannot GET /auth/google/callback
 // i definitely have the route, might not be doing anything? might be an issue.
 
