@@ -25,18 +25,14 @@ passport.use(
             userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
             proxy: true
         },
-    (accessToken, refreshToken, profile, done) => {
-        User.findOne({ googleId: profile.id })
-            .then((existingUser) => {
-                if(existingUser) {
-                    // user exists! log in.
-                    done(null, existingUser);
-                } else {
-                    // user don't! create user!
-                    new User({ googleId: profile.id }).save()
-                        .then(user => done(null, user));
-                    // huh, second param in User model is automatically filled with {googleId:profile.id}?
-                }
-            })
+    async (accessToken, refreshToken, profile, done) => {
+        const existingUser = await User.findOne({ googleId: profile.id })
+        if (existingUser) {
+            // user exists! log in.
+            return done(null, existingUser);
+        }
+            // user don't! create user!
+            const user = await new User({ googleId: profile.id }).save()
+            done(null, user)
     })
 );
