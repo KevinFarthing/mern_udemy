@@ -6,5 +6,7 @@ module.exports = {
     // token_uri:"https://oauth2.googleapis.com/token",
     // auth_provider_x509_cert_url:"https://www.googleapis.com/oauth2/v1/certs",
     mongoURI: process.env.MONGO_URI,
-    cookieKey: process.env.COOKIE_KEY
+    cookieKey: process.env.COOKIE_KEY,
+    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    stripeSecretKey: process.env.STRIPE_SECRET_KEY
 }
