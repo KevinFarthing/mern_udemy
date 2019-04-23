@@ -1,3 +1,6 @@
+// so we have a web api to handle this communication with the server
+// crap, we still need api authentication to get the data from server on the client side.
+// can we get a read only api key?
 var config = {
     apiKey: "AIzaSyDjjxmTSePqUavKuLuWmZc-K_tKukvI_Uw",
     authDomain: "tutorialsfirebase-bbccc.firebaseapp.com",
