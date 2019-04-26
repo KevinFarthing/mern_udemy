@@ -37,7 +37,9 @@
 //     }
 //   }
 // }
-
+$('form').keypress(function(event) { 
+  return event.keyCode != 13;
+}); 
 
 var config = {
     apiKey: "AIzaSyDjjxmTSePqUavKuLuWmZc-K_tKukvI_Uw",
@@ -67,7 +69,6 @@ function addUser(roomID, name) {
 }
 
 function addAnswer() {
-  // console.log("hayo");
   // if isset cookie answerid UPDATE NOT PUSH
   roomID = $('#room').val();
   if (roomID == ""){
@@ -107,8 +108,6 @@ function refreshUsers() {
   var userDataRef = firebase.database().ref(room + "/users").orderByKey();
   userDataRef.once("value").then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
-          // console.log(childSnapshot.key,childSnapshot.val(),childSnapshot.val().Name,childSnapshot.val().AssignedID); // okay childSnapshot.val() has a complete list of users, instead of individuals. whoops.
-          var key = childSnapshot.key;
           var childData = childSnapshot.val();
           $('#users').append('<li class="collection-repeat">' + childData.name + '</li>')
     });
@@ -116,7 +115,6 @@ function refreshUsers() {
 }
 
 function refreshAnswers() {
-  console.log("woot");
   var username = $("#username").val();
   var room = $('#room').val();
   $('#answers').empty();
@@ -148,12 +146,6 @@ function initialize() {
     return self;
 }
 
-// functions.firebase.database().ref( 'gkb' ).onWrite(
-//   () => {
-//     refreshUsers();
-//     refreshAnswers();
-//   }
-// );
 database.ref($('#room').val()).on('value', () => { refreshUsers(), refreshAnswers() });
 
 
