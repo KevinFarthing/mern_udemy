@@ -18,10 +18,15 @@
 <body>
     <div class="container">
         <div id="root">
-            <form action="/action_page.php">
+            <form action="" onkeypress="return event.keyCode != 13">
                 Room ID: <input type="text" id="room" name="room"><br>
                 Username: <input type="text" id="username" name="username"><br>
-                <input class="btn" type="button" value="join" onclick="initialize();">
+                <input type="hidden" id="fbid" name="fbid">
+                <input class="btn btn-primary" type="button" value="join" onclick="initialize();">
+            </form>
+            <form action="" onkeypress="return event.keyCode != 13">
+                Answer: <input type="text" id="answer" name="answer"><br>
+                <input class="btn btn-primary" type="button" value="Submit" onclick="addAnswer();">
             </form>
             <p>Current Players:</p>
             <div><ul id="users"></ul></div>
