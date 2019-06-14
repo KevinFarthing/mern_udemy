@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 // const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    googleId: String
+    googleId: String,
+    credits: { type: Number, default: 0 }
 });
 // ^^^is this magic?
 // looks like mongoose might automatically assume that anything called User must be related to userSchema

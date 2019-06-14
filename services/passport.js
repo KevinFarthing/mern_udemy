@@ -13,7 +13,7 @@ passport.deserializeUser((id, done) => {
     User.findById(id)
         .then(user => {
             done(null, user);
-        })
+        });
 })
 
 passport.use(
@@ -31,8 +31,8 @@ passport.use(
             // user exists! log in.
             return done(null, existingUser);
         }
-            // user don't! create user!
-            const user = await new User({ googleId: profile.id }).save()
-            done(null, user)
+        // user don't! create user!
+        const user = await new User({ googleId: profile.id }).save();
+        done(null, user);
     })
 );

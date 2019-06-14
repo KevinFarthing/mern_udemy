@@ -41,10 +41,14 @@ function addAnswer(roomID, answer) {
 // });
 
 function initialize() {
+    if ($('#room').val() == "" || $("#username").val() == "") {
+      alert("Please enter Room and Name");
+      return
+    }
     console.log($("#room").val());
     var username = $("#username").val();
     var room = $('#room').val();
-    addUser(room, username);
+    id = addUser(room, username);
 
 
     var userDataRef = firebase.database().ref(room + "/users").orderByKey();
@@ -62,4 +66,6 @@ function initialize() {
             
       });
     });
+    console.log(id);
+    return id;
 }
